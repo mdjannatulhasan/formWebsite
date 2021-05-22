@@ -1,0 +1,87 @@
+/*
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Table of Contents:
+        1. Custom design for Bootstrap Classes
+
+
+
+
+
+
+
+*/
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* 1. Custom design for Bootstrap Classes */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.nav{
+    justify-content: space-between !important;
+}
+.tab-content{
+    padding:10px;
+    margin: auto !important;
+}
+.form-control{
+    padding: .18rem .75rem !important;
+}
+.col-form-label{
+    padding-bottom: 0 !important;
+    font-size: 14px !important;
+}
+.motherLabel{
+    margin-bottom: -10px !important ;
+}
+.childGender select{
+    font-size: 14px !important;
+}
+
+.lightYellow{
+    background-color: #fefee6;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #ffffc7 !important;
+}
+textarea:focus,
+input[type="text"]:focus,
+input[type="checkbox"]:focus,
+input[type="url"]:focus{   
+    border-color: rgb(204 204 160);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 8%) inset, 0 0 8px rgb(208 208 117 / 71%);
+}
+
+.btn-primary {
+    color: #020202;
+    background-color: #afaf02 !important;
+    border: 3px solid transparent !important;
+    font-size: 17px;
+    font-weight: 500;
+}
+.btn-primary:hover {
+    color: #020202;
+    background-color: #a7a73b !important;
+    border: 3px solid #7a7a37 !important;
+}
+.btn{
+    padding: .6rem 2.75rem !important;
+}
+
+@media (min-width: 992px){
+    .g-lg-5, .gx-lg-5 {
+        --bs-gutter-x: 5.5rem !important;
+    }
+    .gxCustom {
+        --bs-gutter-x: 15.5rem !important;
+    }
+}
+@media (min-width: 768px){
+    .gxCustom {
+        --bs-gutter-x: 8.5rem !important;
+    }
+}
+/* @media (max-width: 767px){
+    .fatherTitle, .motherLabel{
+        padding-top: 20px;
+    }
+} */
