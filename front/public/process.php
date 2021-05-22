@@ -32,12 +32,13 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == 'POST'){
     $fatherHeader = 0;
     $motherHeader = 0;
     $certifier = 0;
-    $customInputs = array('Place','State','Country','Code','Location', 'Tele','Url','Facility');
-    $customOutputs = array('Birth Place','State of Residency','Country','Zip Code','Location', 'Telephone','Url','Birth Facility');
+    $customInputs = array('Place','State','Country','Code','Location', 'Tele','Url','Facility', 'Date','StreetNumber','AptNumber');
+    $customOutputs = array('Birth Place','State of Residency','Country','Zip Code','Location', 'Telephone','Url','Birth Facility', 'Certified Date','Street or Number', 'Apartment No');
+    
     for($i = 0; $i < $counter-1; $i++){
         if(!is_array($_POST[$postArrayKeys[$i]])) {
             $value = strval($postArrayKeys[$i]);
-            if (!str_contains($value,'Time') && !str_contains($value,'Date') && !str_contains($value,'Number')) {
+            if (!empty($value)) {
                 $person = '';
                 if(str_contains($value,'child')) {
                     $person = "Child";
@@ -63,7 +64,7 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == 'POST'){
                     }
                 }
                 $prnt = '';
-                if (str_contains($value, 'firstName')) {
+                if (str_contains($value, 'firstName') || str_contains($value, 'FullName')) {
                     $nameX = new fullName($_POST[$value], "$person's First Name");
 //                    $nameX = new nameValidator($_POST[$value], "$person's First Name");
                     $errors = $nameX->validate_name();
@@ -96,6 +97,12 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == 'POST'){
                     $nameX = new nameValidator($sex[$_POST[$value]], "$person's Gender");
                     $errors = $nameX->validate_name();
                     $prnt = new errorDisplay($errors, "Gender", $nameX, $sex[$_POST[$value]]);
+                    $prnt->display_error();
+                    unset($nameX);
+                }else if(str_contains($value, 'BirthDate')){
+                    $nameX = new notEmpty($_POST[$value], "$person's Birth Date");
+                    $errors = $nameX->validate_input();
+                    $prnt = new errorDisplay($errors,"$person's Birth Date",$nameX,$_POST[$value]);
                     $prnt->display_error();
                     unset($nameX);
                 }else if(str_contains($value, 'Hospital')){

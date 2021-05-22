@@ -27,7 +27,7 @@ class fullName
 
     function error_print($ar)
     {
-        print_r($ar);
+        //print_r($ar);
         echo "<ul>";
             foreach ($ar as $error) {
                 if (!empty($error)) {
