@@ -4,7 +4,7 @@ class fullName
 
     public $part;
     public $vName;
-
+    public $flag = 0;
     function __construct($input, $inputV){
         $this->part = $input;
         $this->vName = $inputV;
@@ -18,13 +18,17 @@ class fullName
         foreach ($full_name as $name_part) {
             if (empty($name_part)) {
                 $errors[] = '"<span style="color: #1a1a1a">' . $this->vName. '</span>" can not be empty';
+                $this->flag++;
             } else if (!ctype_alpha($name_part)) {
                 $errors[] = '"<span style="color: #1a1a1a">'. " $name_part"  . '</span>" should be Alphabet only';
+                $this->flag++;
             }
         }
         return $errors;
     }
-
+    function flag_check(){
+        return $this->flag;
+    }
     function error_print($ar)
     {
         //print_r($ar);

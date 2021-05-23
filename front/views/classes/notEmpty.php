@@ -5,6 +5,7 @@ class notEmpty
 {
     public $part;
     public $vName;
+    public $flag = 0;
 
     function __construct($input, $inputV){
         $this->part = $input;
@@ -15,8 +16,12 @@ class notEmpty
         $errors=[];
         if(empty($name)){
             $errors[]= '"<span style="color: #1a1a1a">'.$this->vName.'</span>" can not be empty';
+            $this->flag++;
         }
         return $errors;
+    }
+    function flag_check(){
+        return $this->flag;
     }
     function error_print($ar){
         echo "<ul>";
