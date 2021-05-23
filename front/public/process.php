@@ -18,21 +18,6 @@ if (!function_exists('str_contains')) {
         return ($needle !== '' && mb_strpos($haystack, $needle) !== false);
     }
 }
-/*    ~~~~~~~~~~~~~Connect to Database~~~~~~~~~~~~~~~~~    */
-$servername = "localhost";
-$username = "root";
-$password = "";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully";
-
-
 
 
 /*    ~~~~~~~~~~~~~Post method~~~~~~~~~~~~~~~~~    */
@@ -146,4 +131,3 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == 'POST'){
         }
     }
 }
-$conn->close();

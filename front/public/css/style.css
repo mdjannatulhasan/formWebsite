@@ -85,3 +85,10 @@ input[type="url"]:focus{
         padding-top: 20px;
     }
 } */
+
+/* ~~~~~~~~~~~~~~ */
+/* Data Show Page */
+/* ~~~~~~~~~~~~~~ */
+#btnOk{
+    display: none;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    
+    <!-- Bootstrap CSS  file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    
+    <!-- Custom CSS file -->
+    <!-- <link rel="stylesheet" href="front/public/css/style.css"> -->
+    <style>
+        .accordion-flush .accordion-item .accordion-button {
+            border-radius: 0;
+            background-color: azure;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Welcome to my Test Website of Form Validation</h1>
+        <p class="pt-3" style="font-size: 20px;">Please Select any option from below</p>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Full Form
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body"><p> Here I have tried to validate the form using PHP OOP. If you visit this page, you will find a full form. All fields are validated and you can show the result after clicking submit button.</p>
+                        <a href="index1.php" style="color: white; text-decoration: none;"> <button class="btn btn-primary">Check this</button></a>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Form with database connection
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body"><p> Here I have used previous classes but made the form short for testing purpose. You can fill the form and the data will be sent to database. You can see your inputs by entering your credentials.</p>
+                        <a href="index2.php" style="color: white; text-decoration: none;"> <button class="btn btn-primary">Check this</button></a>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                            Check the data of your form
+                        </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <p> Here you can simply view your existing filled form data</p>
+                            <a href="front/public/webpages/viewData.php" style="color: white; text-decoration: none;"> <button class="btn btn-primary">Check this</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer style="text-align: center;padding: 20px 0;">
+            <div class="container">
+                &copy; <script>document.write(new Date().getFullYear())</script>  <a href="https://smmunna.host">Hasan</a>  | All Rights Reserved
+            </div>
+            
+        </footer>
+        <!-- Bootstarp JS Bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    </body>
+    </html>

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*~~~~~~~~~~~~ Autoload Class Function ~~~~~~~~~~~~~~~
   --------spl_autoload_register(autoloader)---------
 
@@ -30,7 +30,6 @@ $conn = new mysqli($servername, $username, $password);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-echo "Connected successfully";
 
 
 
@@ -149,33 +148,51 @@ if(strtoupper($_SERVER['REQUEST_METHOD']) == 'POST'){
         }
     }
 }
+
+$sql = 'abc';
 $uniqueCode = '';
 $username = '';
+if($_SESSION["aRedirect"] != 1) {
 
 
-do{
-    $uniqueCode = uniqid();
-    $result = $conn->query("SELECT `id` FROM `childinfotest`.`child info` WHERE `Unique Code` = '$uniqueCode' ");
-}while($result->num_rows != 0);
+    do {
+        $uniqueCode = uniqid();
+        $result = $conn->query("SELECT `id` FROM `childinfotest`.`child info` WHERE `Unique Code` = '$uniqueCode' ");
+    } while ($result->num_rows != 0);
 
-$temp = '';
-if(!empty($_POST['username'])){
-    $temp = $_POST['username'];
-} else{
-    echo "<span style='color: red; font-size: 20px;'>Please enter an username</span>";
-    die();
-}
-$result = $conn->query("SELECT `id` FROM `childinfotest`.`child info` WHERE `username` = '$temp' ");
-if($result->num_rows == 0){
-    $username = $temp;
-} else{
-    echo "<span style='color: red; font-size: 20px;'>Please insert an unique <b>USERNAME</b> or go to <a href='webpages/viewData.php'>View Data</a> to check existing filled up form.</span>";
-    die();
-}
-echo "<br>";
-$sql = 'abc';
-if($flag == 0){
-    $sql = "INSERT INTO `childinfotest`.`child info` (`First Name`, `Middle Name`,`Last Name`,`Suffix`, `Birth Time`,`Unique Code`, `Form Fillup Time`,`username`) VALUES ('$_POST[childfirstName]','$_POST[childMiddleName]','$_POST[childLastName]','$_POST[childNameSuffix]','$_POST[childBirthTime]','$uniqueCode',current_timestamp(),'$username');";
+
+    $temp = '';
+    if (!empty($_POST['username'])){
+        $temp = $_POST['username'];
+    } else{
+        echo "<span style='color: red; font-size: 20px;'>Please enter an username</span>";
+        die();
+    }
+    $result = $conn->query("SELECT `id` FROM `childinfotest`.`child info` WHERE `username` = '$temp' ");
+    if ($result->num_rows == 0 && $_SESSION["aRedirect"] != 1) {
+        $username = $temp;
+    } else{
+        echo "<span style='color: red; font-size: 20px;'>Please insert an unique <b>USERNAME</b> or go to <a href='webpages/viewData.php'>View Data</a> to check existing filled up form.</span>";
+        die();
+    }
+    echo "<br>";
+    if ($flag == 0) {
+        $sql = "INSERT INTO `childinfotest`.`child info` (`First Name`, `Middle Name`,`Last Name`,`Suffix`, `Birth Time`,`Unique Code`, `Form Fillup Time`,`username`) VALUES ('$_POST[childfirstName]','$_POST[childMiddleName]','$_POST[childLastName]','$_POST[childNameSuffix]','$_POST[childBirthTime]','$uniqueCode',current_timestamp(),'$username');";
+    }
+} else {
+    $username = $_SESSION['inputUserName'];
+    $uniqueCode = $_SESSION['uniqueCode'];
+    if ($flag == 0) {
+        $sql = "UPDATE `childinfotest`.`child info` 
+                SET 
+                    `First Name` = '$_POST[childfirstName]', 
+                    `Middle Name` = '$_POST[childMiddleName]',
+                    `Last Name` = '$_POST[childLastName]',
+                    `Suffix` = '$_POST[childNameSuffix]', 
+                    `Birth Time`='$_POST[childBirthTime]',
+                    `Form Fillup Time` = current_timestamp() 
+                WHERE `username` = '$username' AND `Unique Code` = '$uniqueCode';";
+    }
 }
 if($conn->query($sql)){
     echo "Form Submission Successful";
@@ -184,5 +201,9 @@ if($conn->query($sql)){
     echo "<span style='color: #00bf00;font-size: 22px;'>Please store the <b>Username</b> and <b>Unique Code</b> to view the data later</span>";
 }else{
     echo "Error: ".$conn->error;
+}
+if($_SESSION['aRedirect'] == 7){
+    header( "refresh:5;url=dataShow.php" );
+    $_SESSION['aRedirect'] ++;
 }
 $conn->close();
