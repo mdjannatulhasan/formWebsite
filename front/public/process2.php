@@ -153,8 +153,6 @@ $sql = 'abc';
 $uniqueCode = '';
 $username = '';
 if($_SESSION["aRedirect"] != 1) {
-
-
     do {
         $uniqueCode = uniqid();
         $result = $conn->query("SELECT `id` FROM `childinfotest`.`child info` WHERE `Unique Code` = '$uniqueCode' ");
@@ -202,8 +200,9 @@ if($conn->query($sql)){
 }else{
     echo "Error: ".$conn->error;
 }
-if($_SESSION['aRedirect'] == 7){
-    header( "refresh:5;url=dataShow.php" );
+if($_SESSION['aRedirect'] == 1){
+    header( "refresh:5;url=webpages/dataShow.php" );
+    echo "Redirecting.....Please Wait....";
     $_SESSION['aRedirect'] ++;
 }
 $conn->close();

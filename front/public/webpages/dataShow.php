@@ -1,7 +1,11 @@
 <?php
 session_start();
-$_SESSION["inputUserName"]=$_POST['username'];
-$_SESSION["uniqueCode"]=$_POST['uniqueCode'];
+if($_SESSION['aRedirect'] != 2){
+    $_SESSION["inputUserName"]=$_POST['username'];
+    $_SESSION["uniqueCode"]=$_POST['uniqueCode'];
+} else{
+    echo "<h6 style='color: #00bf00;'>Updated Value</h6>";
+}
 $inputUsername = $_SESSION["inputUserName"];
 $uniqueCode = $_SESSION["uniqueCode"];
 if(strtoupper($_SERVER['REQUEST_METHOD']) == 'POST'){
