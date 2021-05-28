@@ -1,5 +1,7 @@
 <?php
 session_start();
+echo "hi";
+$_SESSION["aRedirect"] = 5;
 /*~~~~~~~~~~~~ Autoload Class Function ~~~~~~~~~~~~~~~
   --------spl_autoload_register(autoloader)---------
 

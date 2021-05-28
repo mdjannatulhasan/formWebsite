@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['aRedirect'] != 2){
+if($_SESSION['aRedirect'] > 1){
     $_SESSION["inputUserName"]=$_POST['username'];
     $_SESSION["uniqueCode"]=$_POST['uniqueCode'];
 } else{
